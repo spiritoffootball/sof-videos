@@ -1,0 +1,165 @@
+# Copyright (C) 2015 SOF Videos
+# This file is distributed under the same license as the SOF Videos package.
+msgid ""
+msgstr ""
+"Project-Id-Version: SOF Videos 0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sof-videos\n"
+"POT-Creation-Date: 2015-10-27 22:00:03+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: includes/sof-videos-cpt.php:105
+msgid "Videos"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:106
+msgid "Video"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:107
+msgctxt "sofvm_video"
+msgid "Add New"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:108
+msgid "Add New Video"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:109
+msgid "Edit Video"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:110
+msgid "New Video"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:111
+msgid "All Videos"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:112
+msgid "View Video"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:113
+msgid "Search Videos"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:114
+msgid "No videos found"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:115
+msgid "No videos found in Trash"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:121
+msgid "A videoblogging post type"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:187
+msgid "Video updated. <a href=\"%s\">View video</a>"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:192
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/sof-videos-cpt.php:193
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/sof-videos-cpt.php:194
+msgid "Video updated."
+msgstr ""
+
+#. translators: %s: date and time of the revision
+
+#: includes/sof-videos-cpt.php:202
+msgid "Video restored to revision from %s"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:211
+msgid "Video published. <a href=\"%s\">View video</a>"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:216
+msgid "Video saved."
+msgstr ""
+
+#: includes/sof-videos-cpt.php:220
+msgid "Video submitted. <a target=\"_blank\" href=\"%s\">Preview video</a>"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:226
+msgid "Video scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview video</a>"
+msgstr ""
+
+#. translators: Publish box date format, see http:php.net/date
+
+#: includes/sof-videos-cpt.php:228
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/sof-videos-cpt.php:235
+msgid "Video draft updated. <a target=\"_blank\" href=\"%s\">Preview video</a>"
+msgstr ""
+
+#: includes/sof-videos-metaboxes.php:89
+msgid "Video URL"
+msgstr ""
+
+#: includes/sof-videos-metaboxes.php:99
+msgid "Blog Post"
+msgstr ""
+
+#: includes/sof-videos-metaboxes.php:134 includes/sof-videos-metaboxes.php:137
+msgid "YouTube URL"
+msgstr ""
+
+#: includes/sof-videos-metaboxes.php:170 includes/sof-videos-metaboxes.php:173
+msgid "Blog Post ID"
+msgstr ""
+
+#: includes/sof-videos-shortcodes.php:97
+msgid "Visit the site to see the video"
+msgstr ""
+
+#: includes/sof-videos-shortcodes.php:196
+msgid "This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit "
+msgstr ""
+
+#: includes/sof-videos-shortcodes.php:199
+msgid "The Ball on YouTube"
+msgstr ""
+
+#: includes/sof-videos-shortcodes.php:255
+msgid "See this video in context"
+msgstr ""
+
+#: includes/sof-videos-shortcodes.php:281
+msgid "Comment on this video"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "SOF Videos"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://spiritoffootball.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Provides a \"Video\" post type which can be embedded in a standard post and has its own navigable archives."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Christian Wach"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://haystack.co.uk"
+msgstr ""
