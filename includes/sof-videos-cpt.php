@@ -192,12 +192,14 @@ class Spirit_Of_Football_Videos_CPT {
 			4 => __( 'Video updated.', 'sof-videos' ),
 
 			// Item restored to a revision.
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			5 => isset( $_GET['revision'] ) ?
 
 				// Revision text.
 				sprintf(
 					/* translators: %s: Title of the revision. */
 					__( 'Video restored to revision from %s', 'sof-videos' ),
+					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					wp_post_revision_title( (int) $_GET['revision'], false )
 				) :
 

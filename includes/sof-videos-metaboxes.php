@@ -197,7 +197,8 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		}
 
 		// Authenticate.
-		$nonce = isset( $_POST['sof_video_url_nonce'] ) ? $_POST['sof_video_url_nonce'] : '';
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$nonce = isset( $_POST['sof_video_url_nonce'] ) ? wp_unslash( $_POST['sof_video_url_nonce'] ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'sof_video_url_settings' ) ) {
 			return;
 		}
@@ -238,11 +239,12 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		// Define prefixed key.
 		$db_key = '_' . $this->video_meta_key;
 
-		// Get video url value.
-		$video_url = ( isset( $_POST[ $this->video_meta_key ] ) ) ? esc_sql( $_POST[ $this->video_meta_key ] ) : '';
+		// Get video URL value.
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$video_url = isset( $_POST[ $this->video_meta_key ] ) ? wp_unslash( $_POST[ $this->video_meta_key ] ) : '';
 
 		// Save for this post.
-		$this->save_meta( $post, $db_key, $video_url );
+		$this->save_meta( $post, $db_key, esc_url_raw( $video_url ) );
 
 	}
 
@@ -261,7 +263,8 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		}
 
 		// Authenticate.
-		$nonce = isset( $_POST['sof_video_blog_id_nonce'] ) ? $_POST['sof_video_blog_id_nonce'] : '';
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$nonce = isset( $_POST['sof_video_blog_id_nonce'] ) ? wp_unslash( $_POST['sof_video_blog_id_nonce'] ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'sof_video_blog_id_settings' ) ) {
 			return;
 		}
