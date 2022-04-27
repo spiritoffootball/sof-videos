@@ -1,101 +1,101 @@
 <?php
+/**
+ * Custom Post Type Class.
+ *
+ * Handles the Custom Post Type for Videos.
+ *
+ * @since 0.1
+ *
+ * @package Spirit_Of_Football_Videos
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
- * SOF Videos Custom Post Type Class
+ * Custom Post Type Class.
  *
- * A class that encapsulates a Custom Post Types for Videos
+ * A class that encapsulates a Custom Post Type for Videos.
  *
- * @package WordPress
- * @subpackage SOF
+ * @since 0.1
  */
 class Spirit_Of_Football_Videos_CPT {
 
-
-
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since 0.1
 	 */
 	public function __construct() {
 
-		// nothing
+		// Nothing.
 
 	}
 
-
-
 	/**
-	 * Register WordPress hooks
+	 * Register WordPress hooks.
 	 *
 	 * @since 0.1
 	 */
 	public function register_hooks() {
 
-		// always create post types
-		add_action( 'init', array( $this, 'create_post_type' ) );
+		// Always create post types.
+		add_action( 'init', [ $this, 'create_post_type' ] );
 
-		// make sure our feedback is appropriate
-		add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
+		// Make sure our feedback is appropriate.
+		add_filter( 'post_updated_messages', [ $this, 'updated_messages' ] );
 
 	}
 
-
-
-
 	/**
-	 * Actions to perform on plugin activation
+	 * Actions to perform on plugin activation.
 	 *
 	 * @since 0.1
 	 */
 	public function activate() {
 
-		// pass through
+		// Pass through.
 		$this->create_post_type();
 
-		// go ahead and flush
+		// Go ahead and flush.
 		flush_rewrite_rules();
 
 	}
 
-
-
 	/**
-	 * Actions to perform on plugin deactivation (NOT deletion)
+	 * Actions to perform on plugin deactivation NOT deletion.
 	 *
 	 * @since 0.1
 	 */
 	public function deactivate() {
 
-		// flush rules to reset
+		// Flush rules to reset.
 		flush_rewrite_rules();
 
 	}
 
-
-
-	// #########################################################################
-
-
+	// -------------------------------------------------------------------------
 
 	/**
-	 * Create our Custom Post Type
+	 * Create our Custom Post Type.
 	 *
 	 * @since 0.1
 	 */
 	public function create_post_type() {
 
-		// only call this once
+		// Only call this once.
 		static $registered;
 
-		// bail if already done
-		if ( $registered ) return;
+		// Bail if already done.
+		if ( $registered ) {
+			return;
+		}
 
-		// set up the post type called "Video"
-		register_post_type( 'sofvm_video', array(
+		// Set up the post type called "Video".
+		register_post_type( 'sofvm_video', [
 
-			// labels
-			'labels' => array(
+			// Labels.
+			'labels' => [
 				'name' => __( 'Videos', 'sof-videos' ),
 				'singular_name' => __( 'Video', 'sof-videos' ),
 				'add_new' => _x( 'Add New', 'sofvm_video', 'sof-videos' ),
@@ -110,13 +110,13 @@ class Spirit_Of_Football_Videos_CPT {
 				'item_scheduled' => __( 'Video scheduled.', 'sof-videos' ),
 				'item_updated' => __( 'Video updated.', 'sof-videos' ),
 				'search_items' => __( 'Search Videos', 'sof-videos' ),
-				'not_found' =>  __( 'No videos found', 'sof-videos' ),
+				'not_found' => __( 'No videos found', 'sof-videos' ),
 				'not_found_in_trash' => __( 'No videos found in Trash', 'sof-videos' ),
 				'parent_item_colon' => '',
-				'menu_name' => 'Videos'
-			),
+				'menu_name' => __( 'Videos', 'sof-videos' ),
+			],
 
-			// defaults
+			// Defaults.
 			'description' => __( 'A videoblogging post type', 'sof-videos' ),
 			'public' => true,
 			'publicly_queryable' => true,
@@ -132,119 +132,117 @@ class Spirit_Of_Football_Videos_CPT {
 			'menu_position' => 20,
 			'map_meta_cap' => true,
 
-			// rewrite
-			'rewrite' => array(
+			// Rewrite.
+			'rewrite' => [
 				'slug' => 'videos',
-				'with_front' => false
-			),
+				'with_front' => false,
+			],
 
-			// taxonomy
-			'taxonomies' => array(
-				'category'
-			),
+			// Taxonomy.
+			'taxonomies' => [
+				'category',
+			],
 
-			// supports
-			'supports' => array(
+			// Supports.
+			'supports' => [
 				'title',
 				'editor',
 				'author',
 				'thumbnail',
 				'comments',
 				'revisions',
-			)
+			],
 
-		) );
+		] );
 
-		//flush_rewrite_rules();
-
-		// flag
+		// Set flag.
 		$registered = true;
 
 	}
 
-
-
 	/**
-	 * Override messages for a custom post type
+	 * Override messages for a custom post type.
 	 *
-	 * @param array $messages The existing messages
-	 * @return array $messages The modified messages
+	 * @since 0.1
+	 *
+	 * @param array $messages The existing messages.
+	 * @return array $messages The modified messages.
 	 */
 	public function updated_messages( $messages ) {
 
-		// access relevant globals
+		// Access relevant globals.
 		global $post, $post_ID;
 
-		// define custom messages for our custom post type
-		$messages['sofvm_video'] = array(
+		// Define custom messages for our custom post type.
+		$messages['sofvm_video'] = [
 
-			// unused - messages start at index 1
+			// Unused - messages start at index 1.
 			0 => '',
 
-			// item updated
+			// Item updated.
 			1 => sprintf(
+				/* translators: %s: Post permalink URL. */
 				__( 'Video updated. <a href="%s">View video</a>', 'sof-videos' ),
 				esc_url( get_permalink( $post_ID ) )
 			),
 
-			// custom fields
+			// Custom fields.
 			2 => __( 'Custom field updated.', 'sof-videos' ),
 			3 => __( 'Custom field deleted.', 'sof-videos' ),
 			4 => __( 'Video updated.', 'sof-videos' ),
 
-			// item restored to a revision
+			// Item restored to a revision.
 			5 => isset( $_GET['revision'] ) ?
 
-					// revision text
-					sprintf(
-						// translators: %s: date and time of the revision
-						__( 'Video restored to revision from %s', 'sof-videos' ),
-						wp_post_revision_title( (int) $_GET['revision'], false )
-					) :
+				// Revision text.
+				sprintf(
+					/* translators: %s: Title of the revision. */
+					__( 'Video restored to revision from %s', 'sof-videos' ),
+					wp_post_revision_title( (int) $_GET['revision'], false )
+				) :
 
-					// no revision
-					false,
+				// No revision.
+				false,
 
-			// item published
+			// Item published.
 			6 => sprintf(
+				/* translators: %s: Post permalink URL. */
 				__( 'Video published. <a href="%s">View video</a>', 'sof-videos' ),
 				esc_url( get_permalink( $post_ID ) )
 			),
 
-			// item saved
+			// Item saved.
 			7 => __( 'Video saved.', 'sof-videos' ),
 
-			// item submitted
+			// Item submitted.
 			8 => sprintf(
+				/* translators: %s: Post preview URL. */
 				__( 'Video submitted. <a target="_blank" href="%s">Preview video</a>', 'sof-videos' ),
 				esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) )
 			),
 
-			// item scheduled
+			// Item scheduled.
 			9 => sprintf(
+				/* translators: 1: Publish box date format, see http://php.net/date, 2: Post date, 3: Post permalink. */
 				__( 'Video scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview video</a>', 'sof-videos' ),
-				// translators: Publish box date format, see http://php.net/date
-				date_i18n( __( 'M j, Y @ G:i' ),
+				/* translators: Publish box date format, see http://php.net/date */
+				date_i18n( __( 'M j, Y @ G:i', 'sof-videos' ),
 				strtotime( $post->post_date ) ),
 				esc_url( get_permalink( $post_ID ) )
 			),
 
-			// draft updated
+			// Draft updated.
 			10 => sprintf(
+				/* translators: %s: Post preview URL. */
 				__( 'Video draft updated. <a target="_blank" href="%s">Preview video</a>', 'sof-videos' ),
 				esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) )
-			)
+			),
 
-		);
+		];
 
 		// --<
 		return $messages;
 
 	}
 
-
-
-} // class Spirit_Of_Football_Videos_CPT ends
-
-
-
+}

@@ -1,165 +1,151 @@
-# Copyright (C) 2015 SOF Videos
-# This file is distributed under the same license as the SOF Videos package.
+# Copyright (C) 2022 Christian Wach
+# This file is distributed under the same license as the SOF Videos plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: SOF Videos 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sof-videos\n"
-"POT-Creation-Date: 2015-10-27 22:00:03+00:00\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2022-04-27T11:32:22+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: sof-videos\n"
 
-#: includes/sof-videos-cpt.php:105
+#. Plugin Name of the plugin
+msgid "SOF Videos"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "http://spiritoffootball.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Provides a Video post type which can be embedded in a standard post and has its own navigable archives."
+msgstr ""
+
+#. Author of the plugin
+msgid "Christian Wach"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://haystack.co.uk"
+msgstr ""
+
 msgid "Videos"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:106
 msgid "Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:107
 msgctxt "sofvm_video"
 msgid "Add New"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:108
 msgid "Add New Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:109
 msgid "Edit Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:110
 msgid "New Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:111
 msgid "All Videos"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:112
 msgid "View Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:113
-msgid "Search Videos"
+msgid "Video published."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:114
-msgid "No videos found"
+msgid "Video published privately."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:115
-msgid "No videos found in Trash"
+msgid "Video reverted to draft."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:121
-msgid "A videoblogging post type"
+msgid "Video scheduled."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:187
-msgid "Video updated. <a href=\"%s\">View video</a>"
-msgstr ""
-
-#: includes/sof-videos-cpt.php:192
-msgid "Custom field updated."
-msgstr ""
-
-#: includes/sof-videos-cpt.php:193
-msgid "Custom field deleted."
-msgstr ""
-
-#: includes/sof-videos-cpt.php:194
 msgid "Video updated."
 msgstr ""
 
-#. translators: %s: date and time of the revision
+msgid "Search Videos"
+msgstr ""
 
-#: includes/sof-videos-cpt.php:202
+msgid "No videos found"
+msgstr ""
+
+msgid "No videos found in Trash"
+msgstr ""
+
+msgid "A videoblogging post type"
+msgstr ""
+
+#. translators: %s: Post permalink URL.
+msgid "Video updated. <a href=\"%s\">View video</a>"
+msgstr ""
+
+msgid "Custom field updated."
+msgstr ""
+
+msgid "Custom field deleted."
+msgstr ""
+
+#. translators: %s: Title of the revision.
 msgid "Video restored to revision from %s"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:211
+#. translators: %s: Post permalink URL.
 msgid "Video published. <a href=\"%s\">View video</a>"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:216
 msgid "Video saved."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:220
+#. translators: %s: Post preview URL.
 msgid "Video submitted. <a target=\"_blank\" href=\"%s\">Preview video</a>"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:226
+#. translators: 1: Publish box date format, see http://php.net/date, 2: Post date, 3: Post permalink.
 msgid "Video scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview video</a>"
 msgstr ""
 
-#. translators: Publish box date format, see http:php.net/date
-
-#: includes/sof-videos-cpt.php:228
+#. translators: Publish box date format, see http://php.net/date
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:235
+#. translators: %s: Post preview URL.
 msgid "Video draft updated. <a target=\"_blank\" href=\"%s\">Preview video</a>"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:89
 msgid "Video URL"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:99
 msgid "Blog Post"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:134 includes/sof-videos-metaboxes.php:137
 msgid "YouTube URL"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:170 includes/sof-videos-metaboxes.php:173
 msgid "Blog Post ID"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:97
 msgid "Visit the site to see the video"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:196
 msgid "This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit "
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:199
 msgid "The Ball on YouTube"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:255
 msgid "See this video in context"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:281
 msgid "Comment on this video"
-msgstr ""
-#. Plugin Name of the plugin/theme
-msgid "SOF Videos"
-msgstr ""
-
-#. Plugin URI of the plugin/theme
-msgid "http://spiritoffootball.com"
-msgstr ""
-
-#. Description of the plugin/theme
-msgid "Provides a \"Video\" post type which can be embedded in a standard post and has its own navigable archives."
-msgstr ""
-
-#. Author of the plugin/theme
-msgid "Christian Wach"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "http://haystack.co.uk"
 msgstr ""

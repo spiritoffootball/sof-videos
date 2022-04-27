@@ -1,137 +1,144 @@
 <?php
+/**
+ * Custom Shortcodes Class.
+ *
+ * Handles Shortcodes for Videos.
+ *
+ * @since 0.1
+ *
+ * @package Spirit_Of_Football_Videos
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 /**
- * SOF Videos Custom Shortcodes Class
+ * Custom Shortcodes Class.
  *
- * A class that encapsulates all Shortcodes for Videos
+ * A class that encapsulates all Shortcodes for Videos.
  *
- * @package WordPress
- * @subpackage SOF
+ * @since 0.1
  */
 class Spirit_Of_Football_Videos_Shortcodes {
 
-
-
 	/**
-	 * Video meta key
+	 * Video meta key.
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var str $video_meta_key The meta key for sticky videos
+	 * @var str $video_meta_key The meta key for the Video.
 	 */
 	public $video_meta_key = 'sofvm_video';
 
-
-
 	/**
-	 * Linked Blog Post meta key
+	 * Linked Blog Post meta key.
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var str $blog_meta_key The meta key for sticky videos
+	 * @var str $blog_meta_key The meta key for the Linked Blog Post.
 	 */
 	public $blog_meta_key = 'sofvm_post';
 
-
-
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
 	 * @since 0.1
 	 */
 	public function __construct() {
 
-		// nothing
+		// Nothing.
 
 	}
 
-
-
 	/**
-	 * Register WordPress hooks
+	 * Register WordPress hooks.
 	 *
 	 * @since 0.1
 	 */
 	public function register_hooks() {
 
-		// register shortcodes
-		add_shortcode( 'sofvideo', array( $this, 'video_shortcode' ) );
+		// Register Shortcodes.
+		add_shortcode( 'sofvideo', [ $this, 'video_shortcode' ] );
 
-		// modify the content
-		add_filter( 'the_content', array( $this, 'the_content' ), 20, 1 );
+		// Modify the content.
+		add_filter( 'the_content', [ $this, 'the_content' ], 20, 1 );
 
 	}
 
-
-
-
-	// #########################################################################
-
-
-
+	// -------------------------------------------------------------------------
 
 	/**
-	 * Add a video to a page/post via a shortcode
+	 * Add a video to a page/post via a Shortcode.
 	 *
 	 * @since 0.1
-	 * @param array $attr The saved shortcode attributes
-	 * @param str $content The enclosed content of the shortcode
-	 * @return str $content The HTML-formatted video custom post type
+	 *
+	 * @param array $attr The saved shortcode attributes.
+	 * @param str $content The enclosed content of the shortcode.
+	 * @return str $content The HTML-formatted video custom post type.
 	 */
 	public function video_shortcode( $attr, $content = null ) {
 
-		// get params
-		extract( shortcode_atts( array(
-			'id'	=> '',
-			'align'	=> 'none'
-		), $attr ) );
+		// Get params.
+		extract( shortcode_atts( [
+			'id' => '',
+			'align' => 'none',
+		], $attr ) );
 
-		// kick out if there's anything amiss
-		if ( $id == '' ) return;
+		// Bail if there's anything amiss.
+		if ( $id == '' ) {
+			return;
+		}
 
-		// return something else for feeds
+		// Return something else for feeds.
 		if ( is_feed() ) {
 			return '<p>' . __( 'Visit the site to see the video', 'sof-videos' ) . '</p>';
 		}
 
-		// get the video post
+		// Get the video post.
 		$video_post = get_post( $id );
 
-		// check we got one
+		// Check we got one.
 		if ( is_object( $video_post ) ) {
 
-			// set it up
+			// Set it up.
 			setup_postdata( $video_post );
 
-			// parse content
+			// Parse content.
 			$content = apply_filters( 'the_content', get_the_content() );
 
-			// we need to manually apply our content filter because $post is the
-			// object for the post into which the video has been embedded
+			/*
+			 * We need to manually apply our content filter because $post is the
+			 * object for the post into which the video has been embedded.
+			 */
 
-			// get embed code
-			$embed = $this->_get_embed( $video_post );
+			// Get embed code.
+			$embed = $this->get_embed( $video_post );
 
-			// get link to video post
-			$link = $this->_get_link_to_video_post( $video_post );
+			// Get link to video post.
+			$link = $this->get_link_to_video_post( $video_post );
 
-			// prepend
+			// Prepend.
 			$content = $embed . $content . $link;
 
-			// give alignment class to div
-			switch( $align ) {
-
-				case 'right': $class = 'alignright'; break;
-				case 'left': $class = 'alignleft'; break;
-				case 'none': $class = 'alignnone'; break;
-				default: $class = 'alignnone';
-
+			// Give alignment class to div.
+			switch ( $align ) {
+				case 'right':
+					$class = 'alignright';
+					break;
+				case 'left':
+					$class = 'alignleft';
+					break;
+				case 'none':
+					$class = 'alignnone';
+					break;
+				default:
+					$class = 'alignnone';
 			}
 
-			// give it an alignment
+			// Give it an alignment.
 			$content = '<div class="sofvm_embed ' . $class . '">' . $content . '</div>';
 
-			// reset just in case
+			// Reset just in case.
 			wp_reset_postdata();
 
 		}
@@ -142,29 +149,29 @@ class Spirit_Of_Football_Videos_Shortcodes {
 	}
 
 
-
-
 	/**
-	 * Prepend video to content
+	 * Prepend video to content.
 	 *
-	 * @param str $content The existing content
-	 * @return str $content The modified content
+	 * @since 0.1
+	 *
+	 * @param str $content The existing content.
+	 * @return str $content The modified content.
 	 */
 	public function the_content( $content ) {
 
-		// reference our post
+		// Reference our post.
 		global $post;
 
-		// only filter our custom post type
+		// Only filter our custom post type.
 		if ( $post->post_type == 'sofvm_video' ) {
 
-			// get embed code
-			$embed_code = $this->_get_embed( $post );
+			// Get embed code.
+			$embed_code = $this->get_embed( $post );
 
-			// get link to blog post
-			$link = $this->_get_context_link( $post );
+			// Get link to blog post.
+			$link = $this->get_context_link( $post );
 
-			// prepend
+			// Prepend.
 			$content = $embed_code . $content . $link;
 
 		}
@@ -174,47 +181,46 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 	}
 
-
-
-	// #########################################################################
-
-
-
+	// -------------------------------------------------------------------------
 
 	/**
 	 * Get the video embed for a post.
 	 *
-	 * @param object $post The post on which the video will be embedded
-	 * @return str $embed_code The HTML-formatted video
+	 * @since 0.1
+	 *
+	 * @param object $post The post on which the video will be embedded.
+	 * @return str $embed_code The HTML-formatted video.
 	 */
-	private function _get_embed( $post ) {
+	private function get_embed( $post ) {
 
-		// intro text
+		// Intro text.
 		$intro = __( 'This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit ', 'sof-videos' );
 
-		// link text
+		// Link text.
 		$follow = __( 'The Ball on YouTube', 'sof-videos' );
 
-		// init embed code
-		$embed_code = '<div class="sofvm_video"><p><strong>' . $intro . '<a href="http://www.youtube.com/sofcic">' . $follow . '</a>.</strong></p></div>' . "\n\n";
+		// Init embed code.
+		$embed_code = '<div class="sofvm_video">' .
+			'<p><strong>' . $intro . '<a href="https://www.youtube.com/sofcic">' . $follow . '</a>.</strong></p>' .
+		'</div>' . "\n\n";
 
-		// get DB key
+		// Get prefixed meta key.
 		$db_key = '_' . $this->video_meta_key;
 
-		// if the video custom field has a value
+		// If the video custom field has a value.
 		$existing = get_post_meta( $post->ID, $db_key, true );
 		if ( ! empty( $existing ) ) {
 
-			// get it
+			// Get it.
 			$video_url = get_post_meta( $post->ID, $db_key, true );
 
-			// get embed
-			$embed_code = wp_oembed_get( $video_url, array(
+			// Get embed.
+			$embed_code = wp_oembed_get( $video_url, [
 				'width' => apply_filters( 'sofvm_video_width', 640 ),
 				'height' => apply_filters( 'sofvm_video_height', 360 ),
-			) );
+			] );
 
-			// wrap embed in a div for styling options
+			// Wrap embed in a div for styling options.
 			$embed_code = '<div class="sofvm_video">' . $embed_code . '</div>' . "\n\n";
 
 		}
@@ -224,36 +230,36 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 	}
 
-
-
 	/**
 	 * Get the link to where the video is embedded.
 	 *
-	 * @param object $post The video post object
-	 * @return str $link The link to the blog post
+	 * @since 0.1
+	 *
+	 * @param object $post The video post object.
+	 * @return str $link The link to the blog post.
 	 */
-	private function _get_context_link( $post ) {
+	private function get_context_link( $post ) {
 
-		// init link
+		// Init link.
 		$link = '';
 
-		// get DB key
+		// Get DB key.
 		$db_key = '_' . $this->blog_meta_key;
 
-		// if the post custom field has a value
+		// If the post custom field has a value.
 		$existing = get_post_meta( $post->ID, $db_key, true );
 		if ( ! empty( $existing ) ) {
 
-			// get it
+			// Get it.
 			$id = get_post_meta( $post->ID, $db_key, true );
 
-			// get permalink to the target post
+			// Get permalink to the target post.
 			$permalink = get_permalink( $id );
 
-			// construct link
+			// Construct link.
 			$link = '<p><a href="' . $permalink . '">' . __( 'See this video in context', 'sof-videos' ) . '</a></p>';
 
-			// wrap link in a div for styling options
+			// Wrap link in a div for styling options.
 			$link = '<div class="sofvm_context_link">' . $link . '</div>' . "\n\n";
 
 		}
@@ -263,23 +269,23 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 	}
 
-
-
 	/**
 	 * Get the link to the original video post.
 	 *
-	 * @param object $post The post on which the video is embedded
-	 * @return str $link The link to the video post
+	 * @since 0.1
+	 *
+	 * @param object $post The post on which the video is embedded.
+	 * @return str $link The link to the video post.
 	 */
-	private function _get_link_to_video_post( $post ) {
+	private function get_link_to_video_post( $post ) {
 
-		// get permalink to the target post
+		// Get permalink to the target post.
 		$permalink = get_permalink( $post->ID );
 
-		// construct link
+		// Construct link.
 		$link = '<p><a href="' . $permalink . '#respond">' . __( 'Comment on this video', 'sof-videos' ) . '</a></p>';
 
-		// wrap link in a div for styling options
+		// Wrap link in a div for styling options.
 		$link = '<div class="sofvm_video_post_link">' . $link . '</div>' . "\n\n";
 
 		// --<
@@ -287,9 +293,4 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 	}
 
-
-
-} // class Spirit_Of_Football_Videos_Shortcodes ends
-
-
-
+}
