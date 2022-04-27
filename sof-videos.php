@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: SOF Videos
- * Plugin URI: http://spiritoffootball.com
+ * Plugin URI: https://github.com/spiritoffootball/sof-videos
  * Description: Provides a Video post type which can be embedded in a standard post and has its own navigable archives.
  * Author: Christian Wach
  * Version: 0.1
