@@ -168,7 +168,7 @@ class Spirit_Of_Football_Videos {
 		load_plugin_textdomain(
 			'sof-videos', // Unique name.
 			false, // Deprecated argument.
-			dirname( plugin_basename( SOF_QUOTES_FILE ) ) . '/languages/' // Relative path to files.
+			dirname( plugin_basename( SOF_VIDEOS_FILE ) ) . '/languages/' // Relative path to files.
 		);
 
 	}
