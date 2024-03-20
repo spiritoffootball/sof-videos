@@ -201,7 +201,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 		// Init embed code.
 		$embed_code = '<div class="sofvm_video">' .
-			'<p><strong>' . $intro . '<a href="https://www.youtube.com/sofcic">' . $follow . '</a>.</strong></p>' .
+			'<p><strong>' . $intro . '<a href="https://www.youtube.com/@spirit-of-football">' . $follow . '</a>.</strong></p>' .
 		'</div>' . "\n\n";
 
 		// Get prefixed meta key.
