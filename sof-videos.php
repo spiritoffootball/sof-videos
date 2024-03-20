@@ -1,13 +1,16 @@
 <?php
 /**
- * Plugin Name: SOF Videos
- * Plugin URI: https://github.com/spiritoffootball/sof-videos
- * Description: Provides a Video post type which can be embedded in a standard post and has its own navigable archives.
- * Author: Christian Wach
- * Version: 0.1
- * Author URI: https://haystack.co.uk
- * Text Domain: sof-videos
- * Domain Path: /languages
+ * SOF Videos
+ *
+ * Plugin Name:       SOF Videos
+ * Description:       Provides a Video post type which can be embedded in a standard post and has its own navigable archives.
+ * Plugin URI:        https://github.com/spiritoffootball/sof-videos
+ * GitHub Plugin URI: https://github.com/spiritoffootball/sof-videos
+ * Version:           0.1
+ * Author:            Christian Wach
+ * Author URI:        https://haystack.co.uk
+ * Text Domain:       sof-videos
+ * Domain Path:       /languages
  *
  * @package Spirit_Of_Football_Videos
  */
@@ -47,7 +50,7 @@ class Spirit_Of_Football_Videos {
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var object $cpt The Custom Post Type object.
+	 * @var Spirit_Of_Football_Videos_CPT
 	 */
 	public $cpt;
 
@@ -56,7 +59,7 @@ class Spirit_Of_Football_Videos {
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var object $metaboxes The Metaboxes object.
+	 * @var Spirit_Of_Football_Videos_Metaboxes
 	 */
 	public $metaboxes;
 
@@ -65,7 +68,7 @@ class Spirit_Of_Football_Videos {
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var object $shortcodes The Shortcodes object.
+	 * @var Spirit_Of_Football_Videos_Shortcodes
 	 */
 	public $shortcodes;
 
@@ -76,13 +79,9 @@ class Spirit_Of_Football_Videos {
 	 */
 	public function __construct() {
 
-		// Include files.
+		// Bootstrap plugin.
 		$this->include_files();
-
-		// Setup globals.
 		$this->setup_globals();
-
-		// Register hooks.
 		$this->register_hooks();
 
 	}

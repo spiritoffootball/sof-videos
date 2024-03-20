@@ -22,20 +22,20 @@ defined( 'ABSPATH' ) || exit;
 class Spirit_Of_Football_Videos_Metaboxes {
 
 	/**
-	 * Video meta key.
+	 * The meta key for the video URL.
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var str $video_meta_key The meta key for the video URL.
+	 * @var string
 	 */
 	public $video_meta_key = 'sofvm_video';
 
 	/**
-	 * Linked Blog Post meta key.
+	 * The meta key for the linked blog post.
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var str $blog_meta_key The meta key for the linked blog post.
+	 * @var string
 	 */
 	public $blog_meta_key = 'sofvm_post';
 
@@ -65,7 +65,7 @@ class Spirit_Of_Football_Videos_Metaboxes {
 
 	}
 
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------
 
 	/**
 	 * Adds meta boxes to admin screens.
@@ -180,7 +180,7 @@ class Spirit_Of_Football_Videos_Metaboxes {
 
 	}
 
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------
 
 	/**
 	 * When a page is saved, this also saves the video URL.

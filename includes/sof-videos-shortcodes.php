@@ -22,20 +22,20 @@ defined( 'ABSPATH' ) || exit;
 class Spirit_Of_Football_Videos_Shortcodes {
 
 	/**
-	 * Video meta key.
+	 * The meta key for the video URL.
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var str $video_meta_key The meta key for the Video.
+	 * @var string
 	 */
 	public $video_meta_key = 'sofvm_video';
 
 	/**
-	 * Linked Blog Post meta key.
+	 * The meta key for the linked blog post.
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @var str $blog_meta_key The meta key for the Linked Blog Post.
+	 * @var string
 	 */
 	public $blog_meta_key = 'sofvm_post';
 
@@ -65,7 +65,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 	}
 
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------
 
 	/**
 	 * Add a video to a page/post via a Shortcode.
@@ -181,7 +181,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 	}
 
-	// -------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------
 
 	/**
 	 * Get the video embed for a post.
