@@ -91,7 +91,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 		// Return something else for feeds.
 		if ( is_feed() ) {
-			return '<p>' . __( 'Visit the site to see the video', 'sof-videos' ) . '</p>';
+			return '<p>' . esc_html__( 'Visit the site to see the video.', 'sof-videos' ) . '</p>';
 		}
 
 		// Get the video post.
@@ -136,7 +136,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 			}
 
 			// Give it an alignment.
-			$content = '<div class="sofvm_embed ' . $class . '">' . $content . '</div>';
+			$content = '<div class="sofvm_embed ' . esc_attr( $class ) . '">' . $content . '</div>';
 
 			// Reset just in case.
 			wp_reset_postdata();
@@ -201,7 +201,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 
 		// Init embed code.
 		$embed_code = '<div class="sofvm_video">' .
-			'<p><strong>' . $intro . '<a href="https://www.youtube.com/@spirit-of-football">' . $follow . '</a>.</strong></p>' .
+			'<p><strong>' . esc_html( $intro ) . '<a href="https://www.youtube.com/@spirit-of-football">' . esc_html( $follow ) . '</a>.</strong></p>' .
 		'</div>' . "\n\n";
 
 		// Get prefixed meta key.
@@ -257,7 +257,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 			$permalink = get_permalink( $id );
 
 			// Construct link.
-			$link = '<p><a href="' . $permalink . '">' . __( 'See this video in context', 'sof-videos' ) . '</a></p>';
+			$link = '<p><a href="' . esc_url( $permalink ) . '">' . esc_html__( 'See this video in context', 'sof-videos' ) . '</a></p>';
 
 			// Wrap link in a div for styling options.
 			$link = '<div class="sofvm_context_link">' . $link . '</div>' . "\n\n";
@@ -283,7 +283,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 		$permalink = get_permalink( $post->ID );
 
 		// Construct link.
-		$link = '<p><a href="' . $permalink . '#respond">' . __( 'Comment on this video', 'sof-videos' ) . '</a></p>';
+		$link = '<p><a href="' . esc_url( $permalink ) . '#respond">' . esc_html__( 'Comment on this video', 'sof-videos' ) . '</a></p>';
 
 		// Wrap link in a div for styling options.
 		$link = '<div class="sofvm_video_post_link">' . $link . '</div>' . "\n\n";
