@@ -108,8 +108,8 @@ class Spirit_Of_Football_Videos {
 	public function setup_globals() {
 
 		// Instantiate objects.
-		$this->cpt = new Spirit_Of_Football_Videos_CPT();
-		$this->metaboxes = new Spirit_Of_Football_Videos_Metaboxes();
+		$this->cpt        = new Spirit_Of_Football_Videos_CPT();
+		$this->metaboxes  = new Spirit_Of_Football_Videos_Metaboxes();
 		$this->shortcodes = new Spirit_Of_Football_Videos_Shortcodes();
 
 	}

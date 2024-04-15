@@ -44,11 +44,7 @@ class Spirit_Of_Football_Videos_Metaboxes {
 	 *
 	 * @since 0.1
 	 */
-	public function __construct() {
-
-		// Nothing.
-
-	}
+	public function __construct() {}
 
 	/**
 	 * Register WordPress hooks.
@@ -112,20 +108,20 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		$db_key = '_' . $this->video_meta_key;
 
 		// Get value if if the custom field already has one.
-		$val = '';
+		$val      = '';
 		$existing = get_post_meta( $post->ID, $db_key, true );
 		if ( ! empty( $existing ) ) {
 			$val = get_post_meta( $post->ID, $db_key, true );
 		}
 
 		// Heading.
-		echo '<p><strong>' . __( 'YouTube URL', 'sof-videos' ) . '</strong></p>' . "\n";
+		echo '<p><strong>' . esc_html__( 'YouTube URL', 'sof-videos' ) . '</strong></p>' . "\n";
 
 		// Label.
-		echo '<label class="screen-reader-text" for="' . $this->video_meta_key . '">' . __( 'YouTube URL', 'sof-videos' ) . '</label>' . "\n";
+		echo '<label class="screen-reader-text" for="' . esc_attr( $this->video_meta_key ) . '">' . esc_html__( 'YouTube URL', 'sof-videos' ) . '</label>' . "\n";
 
 		// Input.
-		echo '<input id="' . $this->video_meta_key . '" name="' . $this->video_meta_key . '" type="text"  value="' . $val . '" />';
+		echo '<input id="' . esc_attr( $this->video_meta_key ) . '" name="' . esc_attr( $this->video_meta_key ) . '" type="text"  value="' . esc_attr( $val ) . '" />';
 
 	}
 
@@ -145,20 +141,20 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		$db_key = '_' . $this->blog_meta_key;
 
 		// Get value if if the custom field already has one.
-		$val = '';
+		$val      = '';
 		$existing = get_post_meta( $post->ID, $db_key, true );
 		if ( ! empty( $existing ) ) {
 			$val = get_post_meta( $post->ID, $db_key, true );
 		}
 
 		// Heading.
-		echo '<p><strong>' . __( 'Blog Post ID', 'sof-videos' ) . '</strong></p>' . "\n";
+		echo '<p><strong>' . esc_html__( 'Blog Post ID', 'sof-videos' ) . '</strong></p>' . "\n";
 
 		// Label.
-		echo '<label class="screen-reader-text" for="' . $this->blog_meta_key . '">' . __( 'Blog Post ID', 'sof-videos' ) . '</label>' . "\n";
+		echo '<label class="screen-reader-text" for="' . esc_attr( $this->blog_meta_key ) . '">' . esc_html__( 'Blog Post ID', 'sof-videos' ) . '</label>' . "\n";
 
 		// Input.
-		echo '<input id="' . $this->blog_meta_key . '" name="' . $this->blog_meta_key . '" type="text"  value="' . $val . '" />';
+		echo '<input id="' . esc_attr( $this->blog_meta_key ) . '" name="' . esc_attr( $this->blog_meta_key ) . '" type="text"  value="' . esc_attr( $val ) . '" />';
 
 	}
 
@@ -214,10 +210,10 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		}
 
 		// Check for revision.
-		if ( $post_obj->post_type == 'revision' ) {
+		if ( 'revision' === $post_obj->post_type ) {
 
 			// Get parent.
-			if ( $post_obj->post_parent != 0 ) {
+			if ( 0 !== (int) $post_obj->post_parent ) {
 				$post = get_post( $post_obj->post_parent );
 			} else {
 				$post = $post_obj;
@@ -228,7 +224,7 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		}
 
 		// Bail if not video post type.
-		if ( $post->post_type != 'sofvm_video' ) {
+		if ( 'sofvm_video' !== $post->post_type ) {
 			return;
 		}
 
@@ -280,10 +276,10 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		}
 
 		// Check for revision.
-		if ( $post_obj->post_type == 'revision' ) {
+		if ( 'revision' === $post_obj->post_type ) {
 
 			// Get parent.
-			if ( $post_obj->post_parent != 0 ) {
+			if ( 0 !== (int) $post_obj->post_parent ) {
 				$post = get_post( $post_obj->post_parent );
 			} else {
 				$post = $post_obj;
@@ -294,7 +290,7 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		}
 
 		// Bail if not video post type.
-		if ( $post->post_type != 'sofvm_video' ) {
+		if ( 'sofvm_video' !== $post->post_type ) {
 			return;
 		}
 
@@ -319,8 +315,8 @@ class Spirit_Of_Football_Videos_Metaboxes {
 	 * @since 0.1
 	 *
 	 * @param WP_Post $post The WordPress post object.
-	 * @param string $key The meta key.
-	 * @param mixed $data The data to be saved.
+	 * @param string  $key The meta key.
+	 * @param mixed   $data The data to be saved.
 	 * @return mixed $data The data that was saved.
 	 */
 	private function save_meta( $post, $key, $data = '' ) {

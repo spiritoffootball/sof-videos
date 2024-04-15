@@ -44,11 +44,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 	 *
 	 * @since 0.1
 	 */
-	public function __construct() {
-
-		// Nothing.
-
-	}
+	public function __construct() {}
 
 	/**
 	 * Register WordPress hooks.
@@ -73,19 +69,22 @@ class Spirit_Of_Football_Videos_Shortcodes {
 	 * @since 0.1
 	 *
 	 * @param array $attr The saved shortcode attributes.
-	 * @param str $content The enclosed content of the shortcode.
+	 * @param str   $content The enclosed content of the shortcode.
 	 * @return str $content The HTML-formatted video custom post type.
 	 */
-	public function video_shortcode( $attr, $content = null ) {
+	public function video_shortcode( $attr, $content = '' ) {
 
-		// Get params.
-		extract( shortcode_atts( [
-			'id' => '',
+		// Set the shortcode defaults.
+		$defaults = [
+			'id'    => '',
 			'align' => 'none',
-		], $attr ) );
+		];
+
+		// Get our shortcode attributes.
+		$atts = shortcode_atts( $defaults, $attr );
 
 		// Bail if there's anything amiss.
-		if ( $id == '' ) {
+		if ( empty( $atts['id'] ) ) {
 			return;
 		}
 
@@ -95,7 +94,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 		}
 
 		// Get the video post.
-		$video_post = get_post( $id );
+		$video_post = get_post( (int) $atts['id'] );
 
 		// Check we got one.
 		if ( is_object( $video_post ) ) {
@@ -121,7 +120,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 			$content = $embed . $content . $link;
 
 			// Give alignment class to div.
-			switch ( $align ) {
+			switch ( $atts['align'] ) {
 				case 'right':
 					$class = 'alignright';
 					break;
@@ -163,7 +162,7 @@ class Spirit_Of_Football_Videos_Shortcodes {
 		global $post;
 
 		// Only filter our custom post type.
-		if ( $post->post_type == 'sofvm_video' ) {
+		if ( 'sofvm_video' === $post->post_type ) {
 
 			// Get embed code.
 			$embed_code = $this->get_embed( $post );
@@ -208,17 +207,35 @@ class Spirit_Of_Football_Videos_Shortcodes {
 		$db_key = '_' . $this->video_meta_key;
 
 		// If the video custom field has a value.
-		$existing = get_post_meta( $post->ID, $db_key, true );
-		if ( ! empty( $existing ) ) {
+		$video_url = get_post_meta( $post->ID, $db_key, true );
+		if ( ! empty( $video_url ) ) {
 
-			// Get it.
-			$video_url = get_post_meta( $post->ID, $db_key, true );
+			/**
+			 * Filter the default video width.
+			 *
+			 * @since 0.1
+			 *
+			 * @param int $width The default video width.
+			 */
+			$width = apply_filters( 'sofvm_video_width', 640 );
+
+			/**
+			 * Filter the default video height.
+			 *
+			 * @since 0.1
+			 *
+			 * @param int $height The default video height.
+			 */
+			$height = apply_filters( 'sofvm_video_height', 360 );
+
+			// Build args.
+			$args = [
+				'width'  => $width,
+				'height' => $height,
+			];
 
 			// Get embed.
-			$embed_code = wp_oembed_get( $video_url, [
-				'width' => apply_filters( 'sofvm_video_width', 640 ),
-				'height' => apply_filters( 'sofvm_video_height', 360 ),
-			] );
+			$embed_code = wp_oembed_get( $video_url, $args );
 
 			// Wrap embed in a div for styling options.
 			$embed_code = '<div class="sofvm_video">' . $embed_code . '</div>' . "\n\n";
