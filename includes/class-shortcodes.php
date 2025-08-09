@@ -209,17 +209,6 @@ class Spirit_Of_Football_Videos_Shortcodes {
 	 */
 	private function get_embed( $post ) {
 
-		// Intro text.
-		$intro = __( 'This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit ', 'sof-videos' );
-
-		// Link text.
-		$follow = __( 'The Ball on YouTube', 'sof-videos' );
-
-		// Init embed code.
-		$embed_code = '<div class="sofvm_video">' .
-			'<p><strong>' . esc_html( $intro ) . '<a href="https://www.youtube.com/@spirit-of-football">' . esc_html( $follow ) . '</a>.</strong></p>' .
-		'</div>' . "\n\n";
-
 		// Get prefixed meta key.
 		$db_key = '_' . $this->video_meta_key;
 
@@ -254,10 +243,23 @@ class Spirit_Of_Football_Videos_Shortcodes {
 			// Get embed.
 			$embed_code = wp_oembed_get( $video_url, $args );
 
-			// Wrap embed in a div for styling options.
-			$embed_code = '<div class="sofvm_video">' . $embed_code . '</div>' . "\n\n";
+		} else {
+
+			// Build text.
+			$embed_code = sprintf(
+				/* translators: 1: The opening anchor tag, 2: The closing anchor tag. */
+				esc_html__( 'This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit %1$sThe Ball on YouTube%2$s', 'sof-videos' ),
+				'<a href="https://www.youtube.com/@spirit-of-football">',
+				'</a>'
+			);
+
+			// Wrap in paragraph and strong tags.
+			$embed_code = '<p><strong>' . $embed_code . '</strong></p>';
 
 		}
+
+		// Wrap embed in a div for styling options.
+		$embed_code = '<div class="sofvm_video">' . $embed_code . '</div>' . "\n\n";
 
 		// --<
 		return $embed_code;
