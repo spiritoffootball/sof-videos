@@ -94,9 +94,9 @@ class Spirit_Of_Football_Videos {
 	public function include_files() {
 
 		// Include class files.
-		include_once SOF_VIDEOS_PATH . 'includes/sof-videos-cpt.php';
-		include_once SOF_VIDEOS_PATH . 'includes/sof-videos-metaboxes.php';
-		include_once SOF_VIDEOS_PATH . 'includes/sof-videos-shortcodes.php';
+		include_once SOF_VIDEOS_PATH . 'includes/class-cpt.php';
+		include_once SOF_VIDEOS_PATH . 'includes/class-metaboxes.php';
+		include_once SOF_VIDEOS_PATH . 'includes/class-shortcodes.php';
 
 	}
 
