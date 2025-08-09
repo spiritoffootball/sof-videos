@@ -138,7 +138,7 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		echo '<label class="screen-reader-text" for="' . esc_attr( $this->video_meta_key ) . '">' . esc_html__( 'YouTube URL', 'sof-videos' ) . '</label>' . "\n";
 
 		// Input.
-		echo '<input id="' . esc_attr( $this->video_meta_key ) . '" name="' . esc_attr( $this->video_meta_key ) . '" type="text"  value="' . esc_attr( $val ) . '" />';
+		echo '<input class="widefat" id="' . esc_attr( $this->video_meta_key ) . '" name="' . esc_attr( $this->video_meta_key ) . '" type="text"  value="' . esc_attr( $val ) . '" />';
 
 	}
 
