@@ -26,14 +26,35 @@ class Spirit_Of_Football_Videos_CPT {
 	 *
 	 * @since 0.1
 	 */
-	public function __construct() {}
+	public function __construct() {
+
+		// Initialise when plugin is loaded.
+		add_action( 'sof_videos/loaded', [ $this, 'initialise' ] );
+
+	}
 
 	/**
-	 * Register WordPress hooks.
+	 * Initialises this object.
+	 *
+	 * @since 1.0.0
+	 */
+	public function initialise() {
+
+		// Register hooks.
+		$this->register_hooks();
+
+	}
+
+	/**
+	 * Registers hook callbacks.
 	 *
 	 * @since 0.1
 	 */
 	public function register_hooks() {
+
+		// Activation and deactivation.
+		add_action( 'sof_videos/activated', [ $this, 'activate' ] );
+		add_action( 'sof_videos/deactivated', [ $this, 'deactivate' ] );
 
 		// Always create post types.
 		add_action( 'init', [ $this, 'create_post_type' ] );

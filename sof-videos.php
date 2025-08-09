@@ -79,10 +79,41 @@ class Spirit_Of_Football_Videos {
 	 */
 	public function __construct() {
 
+		// Initialise this plugin.
+		add_action( 'plugins_loaded', [ $this, 'initialise' ] );
+
+	}
+
+	/**
+	 * Initialises the plugin.
+	 *
+	 * @since 1.0.0
+	 */
+	public function initialise() {
+
+		// Only do this once.
+		static $done;
+		if ( isset( $done ) && true === $done ) {
+			return;
+		}
+
 		// Bootstrap plugin.
 		$this->include_files();
 		$this->setup_globals();
 		$this->register_hooks();
+
+		/**
+		 * Fires when this plugin has fully loaded.
+		 *
+		 * This action is used internally by this plugin to initialise its objects
+		 * and ensures that all includes and setup has occurred beforehand.
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'sof_videos/loaded' );
+
+		// We're done.
+		$done = true;
 
 	}
 
@@ -122,12 +153,7 @@ class Spirit_Of_Football_Videos {
 	public function register_hooks() {
 
 		// Use translation.
-		add_action( 'plugins_loaded', [ $this, 'translation' ] );
-
-		// Hooks that always need to be present.
-		$this->cpt->register_hooks();
-		$this->metaboxes->register_hooks();
-		$this->shortcodes->register_hooks();
+		add_action( 'init', [ $this, 'translation' ] );
 
 	}
 
@@ -138,8 +164,19 @@ class Spirit_Of_Football_Videos {
 	 */
 	public function activate() {
 
-		// Pass through.
-		$this->cpt->activate();
+		// Make sure plugin is bootstrapped.
+		$this->initialise();
+
+		/**
+		 * Fires when this plugin has been activated.
+		 *
+		 * Used internally by:
+		 *
+		 * * Spirit_Of_Football_Videos_CPT::activate() (Priority: 10)
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'sof_videos/activated' );
 
 	}
 
@@ -150,8 +187,19 @@ class Spirit_Of_Football_Videos {
 	 */
 	public function deactivate() {
 
-		// Pass through.
-		$this->cpt->deactivate();
+		// Make sure plugin is bootstrapped.
+		$this->initialise();
+
+		/**
+		 * Fires when this plugin has been deactivated.
+		 *
+		 * Used internally by:
+		 *
+		 * * Spirit_Of_Football_Videos_CPT::deactivate() (Priority: 10)
+		 *
+		 * @since 1.0.0
+		 */
+		do_action( 'sof_videos/deactivated' );
 
 	}
 

@@ -44,10 +44,27 @@ class Spirit_Of_Football_Videos_Shortcodes {
 	 *
 	 * @since 0.1
 	 */
-	public function __construct() {}
+	public function __construct() {
+
+		// Initialise when plugin is loaded.
+		add_action( 'sof_videos/loaded', [ $this, 'initialise' ] );
+
+	}
 
 	/**
-	 * Register WordPress hooks.
+	 * Initialises this object.
+	 *
+	 * @since 1.0.0
+	 */
+	public function initialise() {
+
+		// Register hooks.
+		$this->register_hooks();
+
+	}
+
+	/**
+	 * Registers hook callbacks.
 	 *
 	 * @since 0.1
 	 */
