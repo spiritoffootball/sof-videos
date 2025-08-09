@@ -122,12 +122,12 @@ class Spirit_Of_Football_Videos {
 	 *
 	 * @since 0.1
 	 */
-	public function include_files() {
+	private function include_files() {
 
 		// Include class files.
-		include_once SOF_VIDEOS_PATH . 'includes/class-cpt.php';
-		include_once SOF_VIDEOS_PATH . 'includes/class-metaboxes.php';
-		include_once SOF_VIDEOS_PATH . 'includes/class-shortcodes.php';
+		require SOF_VIDEOS_PATH . 'includes/class-cpt.php';
+		require SOF_VIDEOS_PATH . 'includes/class-metaboxes.php';
+		require SOF_VIDEOS_PATH . 'includes/class-shortcodes.php';
 
 	}
 
@@ -136,7 +136,7 @@ class Spirit_Of_Football_Videos {
 	 *
 	 * @since 0.1
 	 */
-	public function setup_globals() {
+	private function setup_globals() {
 
 		// Instantiate objects.
 		$this->cpt        = new Spirit_Of_Football_Videos_CPT();
@@ -150,7 +150,7 @@ class Spirit_Of_Football_Videos {
 	 *
 	 * @since 0.1
 	 */
-	public function register_hooks() {
+	private function register_hooks() {
 
 		// Use translation.
 		add_action( 'init', [ $this, 'translation' ] );
