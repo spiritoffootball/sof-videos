@@ -1,17 +1,17 @@
-# Copyright (C) 2024 Christian Wach
+# Copyright (C) 2025 Christian Wach
 # This file is distributed under the same license as the SOF Videos plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: SOF Videos 0.1\n"
+"Project-Id-Version: SOF Videos 1.0.0a\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sof-videos\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-15T11:29:36+00:00\n"
+"POT-Creation-Date: 2025-08-09T22:21:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: sof-videos\n"
 
 #. Plugin Name of the plugin
@@ -39,158 +39,162 @@ msgstr ""
 msgid "https://haystack.co.uk"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:95
-#: includes/sof-videos-cpt.php:112
+#: includes/class-cpt.php:116
+#: includes/class-cpt.php:133
 msgid "Videos"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:96
+#: includes/class-cpt.php:117
 msgid "Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:97
+#: includes/class-cpt.php:118
 msgctxt "sofvm_video"
 msgid "Add New"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:98
+#: includes/class-cpt.php:119
 msgid "Add New Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:99
+#: includes/class-cpt.php:120
 msgid "Edit Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:100
+#: includes/class-cpt.php:121
 msgid "New Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:101
+#: includes/class-cpt.php:122
 msgid "All Videos"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:102
+#: includes/class-cpt.php:123
 msgid "View Video"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:103
+#: includes/class-cpt.php:124
 msgid "Video published."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:104
+#: includes/class-cpt.php:125
 msgid "Video published privately."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:105
+#: includes/class-cpt.php:126
 msgid "Video reverted to draft."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:106
+#: includes/class-cpt.php:127
 msgid "Video scheduled."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:107
-#: includes/sof-videos-cpt.php:191
+#: includes/class-cpt.php:128
+#: includes/class-cpt.php:212
 msgid "Video updated."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:108
+#: includes/class-cpt.php:129
 msgid "Search Videos"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:109
+#: includes/class-cpt.php:130
 msgid "No videos found"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:110
+#: includes/class-cpt.php:131
 msgid "No videos found in Trash"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:116
+#: includes/class-cpt.php:137
 msgid "A videoblogging post type"
 msgstr ""
 
 #. translators: %s: Post permalink URL.
-#: includes/sof-videos-cpt.php:184
+#: includes/class-cpt.php:205
+#, php-format
 msgid "Video updated. <a href=\"%s\">View video</a>"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:189
+#: includes/class-cpt.php:210
 msgid "Custom field updated."
 msgstr ""
 
-#: includes/sof-videos-cpt.php:190
+#: includes/class-cpt.php:211
 msgid "Custom field deleted."
 msgstr ""
 
 #. translators: %s: Title of the revision.
-#: includes/sof-videos-cpt.php:200
+#: includes/class-cpt.php:221
+#, php-format
 msgid "Video restored to revision from %s"
 msgstr ""
 
 #. translators: %s: Post permalink URL.
-#: includes/sof-videos-cpt.php:211
+#: includes/class-cpt.php:232
+#, php-format
 msgid "Video published. <a href=\"%s\">View video</a>"
 msgstr ""
 
-#: includes/sof-videos-cpt.php:216
+#: includes/class-cpt.php:237
 msgid "Video saved."
 msgstr ""
 
 #. translators: %s: Post preview URL.
-#: includes/sof-videos-cpt.php:221
+#: includes/class-cpt.php:242
+#, php-format
 msgid "Video submitted. <a target=\"_blank\" href=\"%s\">Preview video</a>"
 msgstr ""
 
 #. translators: 1: Publish box date format, see http://php.net/date, 2: Post date, 3: Post permalink.
-#: includes/sof-videos-cpt.php:228
+#: includes/class-cpt.php:249
+#, php-format
 msgid "Video scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview video</a>"
 msgstr ""
 
 #. translators: Publish box date format, see http://php.net/date
-#: includes/sof-videos-cpt.php:230
+#: includes/class-cpt.php:251
 msgid "M j, Y @ G:i"
 msgstr ""
 
 #. translators: %s: Post preview URL.
-#: includes/sof-videos-cpt.php:237
+#: includes/class-cpt.php:258
+#, php-format
 msgid "Video draft updated. <a target=\"_blank\" href=\"%s\">Preview video</a>"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:76
+#: includes/class-metaboxes.php:93
 msgid "Video URL"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:86
+#: includes/class-metaboxes.php:103
 msgid "Blog Post"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:118
-#: includes/sof-videos-metaboxes.php:121
+#: includes/class-metaboxes.php:135
+#: includes/class-metaboxes.php:138
 msgid "YouTube URL"
 msgstr ""
 
-#: includes/sof-videos-metaboxes.php:151
-#: includes/sof-videos-metaboxes.php:154
+#: includes/class-metaboxes.php:168
+#: includes/class-metaboxes.php:171
 msgid "Blog Post ID"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:93
+#: includes/class-shortcodes.php:110
 msgid "Visit the site to see the video."
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:196
-msgid "This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit "
+#. translators: 1: The opening anchor tag, 2: The closing anchor tag.
+#: includes/class-shortcodes.php:251
+#, php-format
+msgid "This video is missing because we are in the process of uploading all our videos to YouTube. Please be patient: the video will appear at some point! In the meantime, visit %1$sThe Ball on YouTube%2$s"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:199
-msgid "The Ball on YouTube"
-msgstr ""
-
-#: includes/sof-videos-shortcodes.php:277
+#: includes/class-shortcodes.php:296
 msgid "See this video in context"
 msgstr ""
 
-#: includes/sof-videos-shortcodes.php:303
+#: includes/class-shortcodes.php:322
 msgid "Comment on this video"
 msgstr ""
