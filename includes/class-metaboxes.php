@@ -171,9 +171,11 @@ class Spirit_Of_Football_Videos_Metaboxes {
 		echo '<label class="screen-reader-text" for="' . esc_attr( $this->blog_meta_key ) . '">' . esc_html__( 'Blog Post ID', 'sof-videos' ) . '</label>' . "\n";
 
 		// Input.
-		echo '<input id="' . esc_attr( $this->blog_meta_key ) . '" name="' . esc_attr( $this->blog_meta_key ) . '" type="text"  value="' . esc_attr( $val ) . '" />';
+		echo '<input id="' . esc_attr( $this->blog_meta_key ) . '" name="' . esc_attr( $this->blog_meta_key ) . '" type="number"  value="' . esc_attr( $val ) . '" />';
 
 	}
+
+	// -----------------------------------------------------------------------------------
 
 	/**
 	 * Stores our additional params.
@@ -185,6 +187,32 @@ class Spirit_Of_Football_Videos_Metaboxes {
 	 */
 	public function save_post( $post_id, $post ) {
 
+		// Bail if there's no Post object.
+		if ( ! $post ) {
+			return;
+		}
+
+		// Bail if this is an autosave.
+		if ( wp_is_post_autosave( $post ) ) {
+			return;
+		}
+
+		// Check for revision.
+		$parent_id = wp_is_post_revision( $post );
+		if ( $parent_id ) {
+			$post = get_post( $parent_id );
+		}
+
+		// Bail if not video post type.
+		if ( 'sofvm_video' !== $post->post_type ) {
+			return;
+		}
+
+		// Check permissions.
+		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
+			return;
+		}
+
 		// Store our video URL.
 		$this->save_video_meta( $post );
 
@@ -193,68 +221,26 @@ class Spirit_Of_Football_Videos_Metaboxes {
 
 	}
 
-	// -----------------------------------------------------------------------------------
-
 	/**
 	 * When a page is saved, this also saves the video URL.
 	 *
 	 * @since 0.1
 	 *
-	 * @param WP_Post $post_obj The object for the post or revision.
+	 * @param WP_Post $post The object for the post or revision.
 	 */
-	private function save_video_meta( $post_obj ) {
-
-		// Bail if no post.
-		if ( ! $post_obj ) {
-			return;
-		}
+	private function save_video_meta( $post ) {
 
 		// Authenticate.
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$nonce = isset( $_POST['sof_video_url_nonce'] ) ? wp_unslash( $_POST['sof_video_url_nonce'] ) : '';
+		$nonce = isset( $_POST['sof_video_url_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['sof_video_url_nonce'] ) ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'sof_video_url_settings' ) ) {
 			return;
 		}
-
-		// Is this an auto save routine?
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-			return;
-		}
-
-		// Check permissions.
-		if ( ! current_user_can( 'edit_post', $post_obj->ID ) ) {
-			return;
-		}
-
-		// Check for revision.
-		if ( 'revision' === $post_obj->post_type ) {
-
-			// Get parent.
-			if ( 0 !== (int) $post_obj->post_parent ) {
-				$post = get_post( $post_obj->post_parent );
-			} else {
-				$post = $post_obj;
-			}
-
-		} else {
-			$post = $post_obj;
-		}
-
-		// Bail if not video post type.
-		if ( 'sofvm_video' !== $post->post_type ) {
-			return;
-		}
-
-		// ---------------------------------------------------------------------
-		// Okay, we're through...
-		// ---------------------------------------------------------------------
 
 		// Define prefixed key.
 		$db_key = '_' . $this->video_meta_key;
 
 		// Get video URL value.
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$video_url = isset( $_POST[ $this->video_meta_key ] ) ? wp_unslash( $_POST[ $this->video_meta_key ] ) : '';
+		$video_url = isset( $_POST[ $this->video_meta_key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $this->video_meta_key ] ) ) : '';
 
 		// Save for this post.
 		$this->save_meta( $post, $db_key, esc_url_raw( $video_url ) );
@@ -266,60 +252,21 @@ class Spirit_Of_Football_Videos_Metaboxes {
 	 *
 	 * @since 0.1
 	 *
-	 * @param WP_Post $post_obj The object for the post or revision.
+	 * @param WP_Post $post The object for the post or revision.
 	 */
-	private function save_blog_meta( $post_obj ) {
-
-		// Bail if no post.
-		if ( ! $post_obj ) {
-			return;
-		}
+	private function save_blog_meta( $post ) {
 
 		// Authenticate.
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$nonce = isset( $_POST['sof_video_blog_id_nonce'] ) ? wp_unslash( $_POST['sof_video_blog_id_nonce'] ) : '';
+		$nonce = isset( $_POST['sof_video_blog_id_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['sof_video_blog_id_nonce'] ) ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'sof_video_blog_id_settings' ) ) {
 			return;
 		}
-
-		// Is this an auto save routine?
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-			return;
-		}
-
-		// Check permissions.
-		if ( ! current_user_can( 'edit_post', $post_obj->ID ) ) {
-			return;
-		}
-
-		// Check for revision.
-		if ( 'revision' === $post_obj->post_type ) {
-
-			// Get parent.
-			if ( 0 !== (int) $post_obj->post_parent ) {
-				$post = get_post( $post_obj->post_parent );
-			} else {
-				$post = $post_obj;
-			}
-
-		} else {
-			$post = $post_obj;
-		}
-
-		// Bail if not video post type.
-		if ( 'sofvm_video' !== $post->post_type ) {
-			return;
-		}
-
-		// ---------------------------------------------------------------------
-		// Okay, we're through...
-		// ---------------------------------------------------------------------
 
 		// Define prefixed key.
 		$db_key = '_' . $this->blog_meta_key;
 
 		// Get blog post ID.
-		$blog_post_id = ( isset( $_POST[ $this->blog_meta_key ] ) ) ? esc_sql( (int) $_POST[ $this->blog_meta_key ] ) : '';
+		$blog_post_id = isset( $_POST[ $this->blog_meta_key ] ) ? (int) sanitize_text_field( wp_unslash( $_POST[ $this->blog_meta_key ] ) ) : '';
 
 		// Save for this post.
 		$this->save_meta( $post, $db_key, $blog_post_id );
