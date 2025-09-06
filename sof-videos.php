@@ -3,7 +3,7 @@
  * SOF Videos
  *
  * Plugin Name:       SOF Videos
- * Description:       Provides a Video post type which can be embedded in a standard post and has its own navigable archives.
+ * Description:       Provides a "Video" post type which can be embedded in a standard post and has its own navigable archives.
  * Version:           1.0.0a
  * Plugin URI:        https://github.com/spiritoffootball/sof-videos
  * GitHub Plugin URI: https://github.com/spiritoffootball/sof-videos
