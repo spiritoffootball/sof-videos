@@ -22,6 +22,15 @@ defined( 'ABSPATH' ) || exit;
 class Spirit_Of_Football_Videos_CPT {
 
 	/**
+	 * Custom Post Type name.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @var string
+	 */
+	public $post_type_name = 'sofvm_video';
+
+	/**
 	 * Constructor.
 	 *
 	 * @since 0.1
@@ -57,10 +66,10 @@ class Spirit_Of_Football_Videos_CPT {
 		add_action( 'sof_videos/deactivated', [ $this, 'deactivate' ] );
 
 		// Always create post types.
-		add_action( 'init', [ $this, 'create_post_type' ] );
+		add_action( 'init', [ $this, 'post_type_create' ] );
 
 		// Make sure our feedback is appropriate.
-		add_filter( 'post_updated_messages', [ $this, 'updated_messages' ] );
+		add_filter( 'post_updated_messages', [ $this, 'post_type_messages' ] );
 
 	}
 
@@ -72,7 +81,7 @@ class Spirit_Of_Football_Videos_CPT {
 	public function activate() {
 
 		// Pass through.
-		$this->create_post_type();
+		$this->post_type_create();
 
 		// Go ahead and flush.
 		flush_rewrite_rules();
@@ -94,46 +103,47 @@ class Spirit_Of_Football_Videos_CPT {
 	// -----------------------------------------------------------------------------------
 
 	/**
-	 * Create our Custom Post Type.
+	 * Creates our Custom Post Type.
 	 *
-	 * @since 0.1
+	 * @since 1.0.0
 	 */
-	public function create_post_type() {
+	public function post_type_create() {
 
-		// Only call this once.
+		// Only do this once.
 		static $registered;
-
-		// Bail if already done.
 		if ( $registered ) {
 			return;
 		}
 
+		// Define labels.
+		$labels = [
+			'name'                     => __( 'Videos', 'sof-videos' ),
+			'singular_name'            => __( 'Video', 'sof-videos' ),
+			'add_new'                  => _x( 'Add New', 'post type add new item label', 'sof-videos' ),
+			'add_new_item'             => __( 'Add New Video', 'sof-videos' ),
+			'edit_item'                => __( 'Edit Video', 'sof-videos' ),
+			'new_item'                 => __( 'New Video', 'sof-videos' ),
+			'all_items'                => __( 'All Videos', 'sof-videos' ),
+			'view_item'                => __( 'View Video', 'sof-videos' ),
+			'item_published'           => __( 'Video published.', 'sof-videos' ),
+			'item_published_privately' => __( 'Video published privately.', 'sof-videos' ),
+			'item_reverted_to_draft'   => __( 'Video reverted to draft.', 'sof-videos' ),
+			'item_scheduled'           => __( 'Video scheduled.', 'sof-videos' ),
+			'item_updated'             => __( 'Video updated.', 'sof-videos' ),
+			'search_items'             => __( 'Search Videos', 'sof-videos' ),
+			'not_found'                => __( 'No Videos found', 'sof-videos' ),
+			'not_found_in_trash'       => __( 'No Videos found in Trash', 'sof-videos' ),
+			'parent_item_colon'        => '',
+			'menu_name'                => __( 'Videos', 'sof-videos' ),
+		];
+
 		// Build Post Type args.
 		$args = [
 
-			// Labels.
-			'labels'              => [
-				'name'                     => __( 'Videos', 'sof-videos' ),
-				'singular_name'            => __( 'Video', 'sof-videos' ),
-				'add_new'                  => _x( 'Add New', 'sofvm_video', 'sof-videos' ),
-				'add_new_item'             => __( 'Add New Video', 'sof-videos' ),
-				'edit_item'                => __( 'Edit Video', 'sof-videos' ),
-				'new_item'                 => __( 'New Video', 'sof-videos' ),
-				'all_items'                => __( 'All Videos', 'sof-videos' ),
-				'view_item'                => __( 'View Video', 'sof-videos' ),
-				'item_published'           => __( 'Video published.', 'sof-videos' ),
-				'item_published_privately' => __( 'Video published privately.', 'sof-videos' ),
-				'item_reverted_to_draft'   => __( 'Video reverted to draft.', 'sof-videos' ),
-				'item_scheduled'           => __( 'Video scheduled.', 'sof-videos' ),
-				'item_updated'             => __( 'Video updated.', 'sof-videos' ),
-				'search_items'             => __( 'Search Videos', 'sof-videos' ),
-				'not_found'                => __( 'No videos found', 'sof-videos' ),
-				'not_found_in_trash'       => __( 'No videos found in Trash', 'sof-videos' ),
-				'parent_item_colon'        => '',
-				'menu_name'                => __( 'Videos', 'sof-videos' ),
-			],
+			'labels'              => $labels,
 
 			// Defaults.
+			'menu_icon'           => 'dashicons-video-alt3',
 			'description'         => __( 'A videoblogging post type', 'sof-videos' ),
 			'public'              => true,
 			'publicly_queryable'  => true,
@@ -146,7 +156,7 @@ class Spirit_Of_Football_Videos_CPT {
 			'query_var'           => true,
 			'capability_type'     => 'post',
 			'hierarchical'        => false,
-			'menu_position'       => 20,
+			'menu_position'       => 54,
 			'map_meta_cap'        => true,
 
 			// Rewrite.
@@ -173,7 +183,7 @@ class Spirit_Of_Football_Videos_CPT {
 		];
 
 		// Set up the post type called "Video".
-		register_post_type( 'sofvm_video', $args );
+		register_post_type( $this->post_type_name, $args );
 
 		// Set flag.
 		$registered = true;
@@ -181,20 +191,20 @@ class Spirit_Of_Football_Videos_CPT {
 	}
 
 	/**
-	 * Override messages for a custom post type.
+	 * Overrides messages for a Custom Post Type.
 	 *
 	 * @since 0.1
 	 *
 	 * @param array $messages The existing messages.
 	 * @return array $messages The modified messages.
 	 */
-	public function updated_messages( $messages ) {
+	public function post_type_messages( $messages ) {
 
 		// Access relevant globals.
 		global $post, $post_ID;
 
 		// Define custom messages for our custom post type.
-		$messages['sofvm_video'] = [
+		$messages[ $this->post_type_name ] = [
 
 			// Unused - messages start at index 1.
 			0  => '',
@@ -202,7 +212,7 @@ class Spirit_Of_Football_Videos_CPT {
 			// Item updated.
 			1  => sprintf(
 				/* translators: %s: Post permalink URL. */
-				__( 'Video updated. <a href="%s">View video</a>', 'sof-videos' ),
+				__( 'Video updated. <a href="%s">View Video</a>', 'sof-videos' ),
 				esc_url( get_permalink( $post_ID ) )
 			),
 
@@ -229,7 +239,7 @@ class Spirit_Of_Football_Videos_CPT {
 			// Item published.
 			6  => sprintf(
 				/* translators: %s: Post permalink URL. */
-				__( 'Video published. <a href="%s">View video</a>', 'sof-videos' ),
+				__( 'Video published. <a href="%s">View Video</a>', 'sof-videos' ),
 				esc_url( get_permalink( $post_ID ) )
 			),
 
@@ -239,14 +249,14 @@ class Spirit_Of_Football_Videos_CPT {
 			// Item submitted.
 			8  => sprintf(
 				/* translators: %s: Post preview URL. */
-				__( 'Video submitted. <a target="_blank" href="%s">Preview video</a>', 'sof-videos' ),
+				__( 'Video submitted. <a target="_blank" href="%s">Preview Video</a>', 'sof-videos' ),
 				esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) )
 			),
 
 			// Item scheduled.
 			9  => sprintf(
 				/* translators: 1: Publish box date format, see http://php.net/date, 2: Post date, 3: Post permalink. */
-				__( 'Video scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview video</a>', 'sof-videos' ),
+				__( 'Video scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Video</a>', 'sof-videos' ),
 				/* translators: Publish box date format, see http://php.net/date */
 				date_i18n( __( 'M j, Y @ G:i', 'sof-videos' ), strtotime( $post->post_date ) ),
 				esc_url( get_permalink( $post_ID ) )
@@ -255,7 +265,7 @@ class Spirit_Of_Football_Videos_CPT {
 			// Draft updated.
 			10 => sprintf(
 				/* translators: %s: Post preview URL. */
-				__( 'Video draft updated. <a target="_blank" href="%s">Preview video</a>', 'sof-videos' ),
+				__( 'Video draft updated. <a target="_blank" href="%s">Preview Video</a>', 'sof-videos' ),
 				esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) )
 			),
 
