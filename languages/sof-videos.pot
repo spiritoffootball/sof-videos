@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-09T22:21:37+00:00\n"
+"POT-Creation-Date: 2025-09-06T11:23:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: sof-videos\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the plugin
 #: sof-videos.php
-msgid "Provides a Video post type which can be embedded in a standard post and has its own navigable archives."
+msgid "Provides a \"Video\" post type which can be embedded in a standard post and has its own navigable archives."
 msgstr ""
 
 #. Author of the plugin
@@ -39,128 +39,128 @@ msgstr ""
 msgid "https://haystack.co.uk"
 msgstr ""
 
-#: includes/class-cpt.php:116
-#: includes/class-cpt.php:133
+#: includes/class-cpt.php:120
+#: includes/class-cpt.php:137
 msgid "Videos"
 msgstr ""
 
-#: includes/class-cpt.php:117
+#: includes/class-cpt.php:121
 msgid "Video"
 msgstr ""
 
-#: includes/class-cpt.php:118
-msgctxt "sofvm_video"
+#: includes/class-cpt.php:122
+msgctxt "post type add new item label"
 msgid "Add New"
 msgstr ""
 
-#: includes/class-cpt.php:119
+#: includes/class-cpt.php:123
 msgid "Add New Video"
 msgstr ""
 
-#: includes/class-cpt.php:120
+#: includes/class-cpt.php:124
 msgid "Edit Video"
 msgstr ""
 
-#: includes/class-cpt.php:121
+#: includes/class-cpt.php:125
 msgid "New Video"
 msgstr ""
 
-#: includes/class-cpt.php:122
+#: includes/class-cpt.php:126
 msgid "All Videos"
 msgstr ""
 
-#: includes/class-cpt.php:123
+#: includes/class-cpt.php:127
 msgid "View Video"
 msgstr ""
 
-#: includes/class-cpt.php:124
+#: includes/class-cpt.php:128
 msgid "Video published."
 msgstr ""
 
-#: includes/class-cpt.php:125
+#: includes/class-cpt.php:129
 msgid "Video published privately."
 msgstr ""
 
-#: includes/class-cpt.php:126
+#: includes/class-cpt.php:130
 msgid "Video reverted to draft."
 msgstr ""
 
-#: includes/class-cpt.php:127
+#: includes/class-cpt.php:131
 msgid "Video scheduled."
 msgstr ""
 
-#: includes/class-cpt.php:128
-#: includes/class-cpt.php:212
+#: includes/class-cpt.php:132
+#: includes/class-cpt.php:222
 msgid "Video updated."
 msgstr ""
 
-#: includes/class-cpt.php:129
+#: includes/class-cpt.php:133
 msgid "Search Videos"
 msgstr ""
 
-#: includes/class-cpt.php:130
-msgid "No videos found"
+#: includes/class-cpt.php:134
+msgid "No Videos found"
 msgstr ""
 
-#: includes/class-cpt.php:131
-msgid "No videos found in Trash"
+#: includes/class-cpt.php:135
+msgid "No Videos found in Trash"
 msgstr ""
 
-#: includes/class-cpt.php:137
+#: includes/class-cpt.php:147
 msgid "A videoblogging post type"
 msgstr ""
 
 #. translators: %s: Post permalink URL.
-#: includes/class-cpt.php:205
+#: includes/class-cpt.php:215
 #, php-format
-msgid "Video updated. <a href=\"%s\">View video</a>"
+msgid "Video updated. <a href=\"%s\">View Video</a>"
 msgstr ""
 
-#: includes/class-cpt.php:210
+#: includes/class-cpt.php:220
 msgid "Custom field updated."
 msgstr ""
 
-#: includes/class-cpt.php:211
+#: includes/class-cpt.php:221
 msgid "Custom field deleted."
 msgstr ""
 
 #. translators: %s: Title of the revision.
-#: includes/class-cpt.php:221
+#: includes/class-cpt.php:231
 #, php-format
 msgid "Video restored to revision from %s"
 msgstr ""
 
 #. translators: %s: Post permalink URL.
-#: includes/class-cpt.php:232
+#: includes/class-cpt.php:242
 #, php-format
-msgid "Video published. <a href=\"%s\">View video</a>"
+msgid "Video published. <a href=\"%s\">View Video</a>"
 msgstr ""
 
-#: includes/class-cpt.php:237
+#: includes/class-cpt.php:247
 msgid "Video saved."
 msgstr ""
 
 #. translators: %s: Post preview URL.
-#: includes/class-cpt.php:242
+#: includes/class-cpt.php:252
 #, php-format
-msgid "Video submitted. <a target=\"_blank\" href=\"%s\">Preview video</a>"
+msgid "Video submitted. <a target=\"_blank\" href=\"%s\">Preview Video</a>"
 msgstr ""
 
 #. translators: 1: Publish box date format, see http://php.net/date, 2: Post date, 3: Post permalink.
-#: includes/class-cpt.php:249
+#: includes/class-cpt.php:259
 #, php-format
-msgid "Video scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview video</a>"
+msgid "Video scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Video</a>"
 msgstr ""
 
 #. translators: Publish box date format, see http://php.net/date
-#: includes/class-cpt.php:251
+#: includes/class-cpt.php:261
 msgid "M j, Y @ G:i"
 msgstr ""
 
 #. translators: %s: Post preview URL.
-#: includes/class-cpt.php:258
+#: includes/class-cpt.php:268
 #, php-format
-msgid "Video draft updated. <a target=\"_blank\" href=\"%s\">Preview video</a>"
+msgid "Video draft updated. <a target=\"_blank\" href=\"%s\">Preview Video</a>"
 msgstr ""
 
 #: includes/class-metaboxes.php:93
