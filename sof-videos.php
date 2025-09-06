@@ -4,7 +4,7 @@
  *
  * Plugin Name:       SOF Videos
  * Description:       Provides a "Video" post type which can be embedded in a standard post and has its own navigable archives.
- * Version:           1.0.0
+ * Version:           1.0.1a
  * Plugin URI:        https://github.com/spiritoffootball/sof-videos
  * GitHub Plugin URI: https://github.com/spiritoffootball/sof-videos
  * Author:            Christian Wach
@@ -19,7 +19,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Set our version here.
-define( 'SOF_VIDEOS_VERSION', '1.0.0' );
+define( 'SOF_VIDEOS_VERSION', '1.0.1a' );
 
 // Store reference to this file.
 if ( ! defined( 'SOF_VIDEOS_FILE' ) ) {
